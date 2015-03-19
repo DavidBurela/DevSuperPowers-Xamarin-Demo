@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:DevSuperPowersDemo.ViewModels;assembly=DevSuperPowersDemo"
+             x:Class="DevSuperPowersDemo.Views.BetterView"
+             Title="Better">
+  <ContentPage.BindingContext>
+    <viewModels:BetterViewModel/>
+  </ContentPage.BindingContext>
+  
+  <StackLayout VerticalOptions="Center">
+    <Label Text="{Binding Greeting}" VerticalOptions="Center" HorizontalOptions="Center" />
+    
+    <Entry Text="{Binding Name}"/>
+    <Button Text="Say hello" Command="{Binding SayHelloCommand}"/>
+    
+    <Button Text="Create Widget" Command="{Binding CreateWidgetCommand}" IsEnabled="{Binding NotIsBusy}" />
+    <Label Text="{Binding WidgetCount}"/>
+    <ActivityIndicator IsRunning="{Binding IsBusy}" />
+    
+    <ListView ItemsSource="{Binding Animals}">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <StackLayout Orientation="Horizontal">
+              <Label Text="{Binding Name}"/>
+              <Label Text="{Binding Age}"/>
+              <Label Text="{Binding Color}"/>
+            </StackLayout>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+  </StackLayout>
+</ContentPage>
